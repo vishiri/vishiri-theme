@@ -5,6 +5,7 @@
   "publisher": "vishiri",
   "icon": "images/logo.png",
   "version": "1.0.0",
+  "repository": "https://github.com/vishiri/vishiri-theme.git",
   "engines": {
     "vscode": "^1.113.0"
   },
