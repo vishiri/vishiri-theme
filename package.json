@@ -1,0 +1,23 @@
+{
+  "name": "vishiri-theme",
+  "displayName": "Vishiri Theme",
+  "description": "Theme by vishiri",
+  "publisher": "vishiri",
+  "icon": "images/logo.png",
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.113.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "contributes": {
+    "themes": [
+      {
+        "label": "Vishiri Theme",
+        "uiTheme": "vs-dark",
+        "path": "./themes/Vishiri Theme-color-theme.json"
+      }
+    ]
+  }
+}
