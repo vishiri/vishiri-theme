@@ -4,7 +4,7 @@
   "description": "Theme by vishiri",
   "publisher": "elvanos",
   "icon": "images/logo.png",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "repository": "https://github.com/vishiri/vishiri-theme.git",
   "engines": {
     "vscode": "^1.100.0"
