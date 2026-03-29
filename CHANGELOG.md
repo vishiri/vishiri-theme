@@ -4,6 +4,15 @@ All notable changes to the "vishiri-theme" extension will be documented in this 
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [1.1.1] - 2026-03-29
+
+### Added
+- Added cohesive workbench UI theming for Cursor surfaces to better match Vishiri:
+  - Agent/chat panel surfaces (`chat.request*`, `chat.response*`, avatars, slash command chips, edited file text).
+  - Agent list and navigation-adjacent surfaces (activity bar active styling, sidebar border/sticky scroll, quick input focus colors).
+  - Home/empty workspace surfaces (`editorGroup.emptyBackground`, `welcomePage.background`, walkthrough embedded editor background).
+  - Command center and picker surfaces (`commandCenter.*`, `quickInput.*`).
+
 ## [1.1.0] - 2026-03-29
 
 ### Added
