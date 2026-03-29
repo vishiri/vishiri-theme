@@ -1,0 +1,10 @@
+{
+  "scopeName": "vishiri.inject.php.self-scope-resolution",
+  "injectionSelector": "L:source.php",
+  "patterns": [
+    {
+      "name": "keyword.other.self.scope-resolution.php",
+      "match": "(?i)\\bself\\b(?=\\s*::)"
+    }
+  ]
+}

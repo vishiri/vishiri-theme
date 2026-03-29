@@ -1,0 +1,16 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"scopeName": "vishiri.inject.markdown.blockquote-gt",
+	"injectionSelector": "R:text.html.markdown markup.quote.markdown",
+	"patterns": [
+		{
+			"comment": "Leading > chain at line start inside blockquotes (continuation + nested on one line)",
+			"match": "(?:^|\\G)([ ]{0,3})((?:> ?)+)",
+			"captures": {
+				"2": {
+					"name": "punctuation.definition.quote.begin.markdown"
+				}
+			}
+		}
+	]
+}

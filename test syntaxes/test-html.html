@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" class="no-js">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="HTML syntax stress-test for theme tuning" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Test HTML — Vishiri theme</title>
+    <link rel="stylesheet" href="./test-css.css" />
+    <link rel="icon" href="data:," />
+    <style>
+      /* embedded style block */
+      :root {
+        --embed-accent: #96ccb9;
+      }
+    </style>
+  </head>
+  <body id="top" class="layout theme-vishiri">
+    <!-- Comment: landmark regions -->
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header role="banner" aria-label="Site header">
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="/" aria-current="page">Home</a></li>
+          <li><a href="/docs">Docs</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <aside class="sidebar" aria-label="Sidebar">
+      <details open>
+        <summary>Section</summary>
+        <p>Nested <strong>strong</strong>, <em>emphasis</em>, <code>inline code</code>.</p>
+      </details>
+    </aside>
+
+    <main id="main" role="main">
+      <article class="card" itemscope itemtype="https://schema.org/Article">
+        <header>
+          <h1>Heading level 1</h1>
+          <p class="subtitle">
+            <time datetime="2026-03-28">March 28, 2026</time>
+            · <span itemprop="author">Theme Lab</span>
+          </p>
+        </header>
+
+        <section class="content" aria-labelledby="sec-forms">
+          <h2 id="sec-forms">Forms &amp; inputs</h2>
+
+          <form action="/api/demo" method="post" enctype="multipart/form-data" novalidate>
+            <fieldset>
+              <legend>Credentials</legend>
+
+              <label for="email">Email</label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                inputmode="email"
+                autocomplete="email"
+                placeholder="you@example.com"
+                required
+              />
+
+              <label for="pw">Password</label>
+              <input id="pw" name="password" type="password" minlength="8" />
+
+              <label for="bio">Bio</label>
+              <textarea id="bio" name="bio" rows="3" cols="40" maxlength="500"></textarea>
+
+              <label for="country">Country</label>
+              <select id="country" name="country" multiple size="3">
+                <optgroup label="Americas">
+                  <option value="us">United States</option>
+                  <option value="ca" selected>Canada</option>
+                </optgroup>
+                <optgroup label="Europe">
+                  <option value="de">Germany</option>
+                </optgroup>
+              </select>
+
+              <label><input type="checkbox" name="agree" value="1" checked /> I agree</label>
+              <label><input type="radio" name="plan" value="free" /> Free</label>
+              <label><input type="radio" name="plan" value="pro" checked /> Pro</label>
+
+              <label for="avatar">Avatar</label>
+              <input id="avatar" name="avatar" type="file" accept="image/*" />
+
+              <input type="hidden" name="csrf" value="token" />
+
+              <button type="submit">Submit</button>
+              <button type="reset">Reset</button>
+              <button type="button" disabled>Disabled</button>
+            </fieldset>
+          </form>
+        </section>
+
+        <section aria-labelledby="sec-media">
+          <h2 id="sec-media">Media</h2>
+          <figure>
+            <img src="" alt="Placeholder" width="320" height="180" loading="lazy" decoding="async" />
+            <figcaption>Figure caption with <a href="#">link</a>.</figcaption>
+          </figure>
+          <audio controls preload="metadata">
+            <source src="" type="audio/mpeg" />
+          </audio>
+          <video controls poster="">
+            <source src="" type="video/mp4" />
+            <track kind="subtitles" srclang="en" label="English" />
+          </video>
+        </section>
+
+        <section aria-labelledby="sec-data">
+          <h2 id="sec-data">Tables &amp; data</h2>
+          <table>
+            <caption>Sample data</caption>
+            <colgroup>
+              <col span="1" style="width: 40%" />
+              <col span="2" />
+            </colgroup>
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Qty</th>
+                <th scope="col">Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Mint</th>
+                <td>12</td>
+                <td><data value="9.99">$9.99</data></td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="3">Total — <mark>highlighted</mark></td>
+              </tr>
+            </tfoot>
+          </table>
+
+          <dl>
+            <dt>Term</dt>
+            <dd>Definition with <abbr title="HyperText Markup Language">HTML</abbr>.</dd>
+          </dl>
+
+          <pre><code class="language-ts">const x: string = "syntax";</code></pre>
+        </section>
+
+        <section aria-labelledby="sec-misc">
+          <h2 id="sec-misc">Misc</h2>
+          <blockquote cite="https://example.com">
+            <p>Quoted paragraph.</p>
+          </blockquote>
+          <ol start="3" type="I" reversed>
+            <li>One</li>
+            <li value="1">Two</li>
+          </ol>
+          <ul>
+            <li>Nested
+              <ul>
+                <li>Child</li>
+              </ul>
+            </li>
+          </ul>
+          <p>2<sup>nd</sup> and H<sub>2</sub>O · <kbd>Ctrl</kbd>+<kbd>S</kbd></p>
+          <hr />
+          <address>Contact: <a href="mailto:test@example.com">test@example.com</a></address>
+        </section>
+      </article>
+    </main>
+
+    <footer role="contentinfo">
+      <p><small>© 2026 · <wbr />line break opportunity</small></p>
+    </footer>
+
+    <template id="tpl-card">
+      <slot name="title">Default slot</slot>
+    </template>
+
+    <script type="module" src="./test-js.js"></script>
+    <script nomodule>
+      document.documentElement.classList.remove("no-js");
+    </script>
+  </body>
+</html>

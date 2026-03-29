@@ -4,15 +4,49 @@
   "description": "Theme by vishiri",
   "publisher": "elvanos",
   "icon": "images/logo.png",
-  "version": "1.0.2",
+  "version": "1.1.0",
+  "main": "./extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
   "repository": "https://github.com/vishiri/vishiri-theme.git",
+  "scripts": {
+    "organize-theme": "node scripts/organize-theme.mjs"
+  },
+  "devDependencies": {
+    "json5": "^2.2.3"
+  },
   "engines": {
     "vscode": "^1.100.0"
   },
   "categories": [
-    "Themes"
+    "Themes",
+    "Programming Languages"
   ],
   "contributes": {
+    "grammars": [
+      {
+        "scopeName": "vishiri.inject.markdown.blockquote-gt",
+        "path": "./syntaxes/markdown-blockquote-gt.tmLanguage.json",
+        "injectTo": [
+          "text.html.markdown"
+        ]
+      },
+      {
+        "scopeName": "vishiri.inject.markdown.definition-list-colon",
+        "path": "./syntaxes/markdown-definition-list-colon.tmLanguage.json",
+        "injectTo": [
+          "text.html.markdown"
+        ]
+      },
+      {
+        "scopeName": "vishiri.inject.php.self-scope-resolution",
+        "path": "./syntaxes/php-self-scope-resolution.tmLanguage.json",
+        "injectTo": [
+          "source.php"
+        ]
+      }
+    ],
     "themes": [
       {
         "label": "Vishiri Theme",

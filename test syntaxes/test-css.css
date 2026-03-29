@@ -1,0 +1,171 @@
+/**
+ * CSS syntax stress-test for theme tuning.
+ * Covers selectors, at-rules, functions, custom properties, etc.
+ */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap") layer(fonts);
+
+@layer fonts, base, components, utilities;
+
+@layer base {
+  :root {
+    --color-mint: #96ccb9;
+    --color-gold: #e6c37e;
+    --color-bg: #141011;
+    --space-unit: 0.5rem;
+    --shadow: 0 4px 24px rgb(0 0 0 / 35%);
+    --angle: 45deg;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    font-family: "Inter", system-ui, sans-serif;
+    scroll-behavior: smooth;
+    color-scheme: dark light;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100dvh;
+    background-color: var(--color-bg);
+    color: color-mix(in srgb, var(--color-mint) 85%, white);
+  }
+}
+
+/* ------------------------------------------------------------------------- */
+/* Combinators, pseudo-classes, pseudo-elements                               */
+/* ------------------------------------------------------------------------- */
+
+article.card > header:first-of-type + .content {
+  padding-block: calc(var(--space-unit) * 2);
+}
+
+nav ul li:not(:last-child)::after {
+  content: "·";
+  margin-inline: 0.5em;
+  color: var(--color-gold);
+}
+
+a:hover,
+a:focus-visible {
+  color: var(--color-mint);
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+input:disabled,
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ------------------------------------------------------------------------- */
+/* Attribute selectors                                                        */
+/* ------------------------------------------------------------------------- */
+
+[data-theme="dark"] .panel {
+  border: 1px solid hsl(0deg 0% 100% / 12%);
+}
+
+input[type="email" i]::placeholder {
+  font-style: italic;
+}
+
+[class^="icon-"] {
+  display: inline-block;
+}
+
+/* ------------------------------------------------------------------------- */
+/* @media, @supports, container queries                                      */
+/* ------------------------------------------------------------------------- */
+
+@media screen and (width >= 48rem) {
+  .layout {
+    display: grid;
+    grid-template-columns: minmax(12rem, 1fr) minmax(0, 3fr);
+    gap: clamp(1rem, 3vw, 2rem);
+  }
+}
+
+@supports (backdrop-filter: blur(8px)) {
+  .glass {
+    backdrop-filter: blur(8px) saturate(1.2);
+    background: rgb(255 255 255 / 6%);
+  }
+}
+
+@container sidebar (width > 20rem) {
+  .sidebar-inner {
+    flex-direction: row;
+  }
+}
+
+/* ------------------------------------------------------------------------- */
+/* @keyframes animation                                                      */
+/* ------------------------------------------------------------------------- */
+
+@keyframes pulse-mint {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.02);
+  }
+}
+
+.badge--pulse {
+  animation: pulse-mint 2s ease-in-out infinite;
+  animation-play-state: running;
+}
+
+/* ------------------------------------------------------------------------- */
+/* Grid, flex, logical properties                                            */
+/* ------------------------------------------------------------------------- */
+
+.grid-demo {
+  display: grid;
+  grid-template-areas:
+    "a a b"
+    "c d b";
+  gap: 1rem;
+  place-items: start stretch;
+}
+
+.flex-demo {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  row-gap: 1rem;
+  column-gap: 0.5rem;
+}
+
+/* ------------------------------------------------------------------------- */
+/* Modern color & math                                                       */
+/* ------------------------------------------------------------------------- */
+
+.tinted {
+  background: linear-gradient(
+    var(--angle),
+    oklch(0.72 0.08 175),
+    color-mix(in oklab, var(--color-gold) 40%, transparent)
+  );
+}
+
+/* ------------------------------------------------------------------------- */
+/* Print                                                                     */
+/* ------------------------------------------------------------------------- */
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}

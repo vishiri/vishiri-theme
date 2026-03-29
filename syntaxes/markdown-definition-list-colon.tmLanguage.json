@@ -1,0 +1,16 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"scopeName": "vishiri.inject.markdown.definition-list-colon",
+	"injectionSelector": "L:text.html.markdown,L:meta.paragraph.markdown,L:markup.list.unnumbered.markdown,L:markup.list.numbered.markdown,L:markup.quote.markdown",
+	"patterns": [
+		{
+			"comment": "GFM definition list : line (vscode grammar leaves : unscoped). Requires space after colon + non-space. Up to 3 spaces indent only (avoids 4-space code block).",
+			"match": "(^|\\G)([ ]{0,3})(:)([ \\t])(?=\\S)",
+			"captures": {
+				"3": {
+					"name": "punctuation.definition.definition-list.markdown"
+				}
+			}
+		}
+	]
+}

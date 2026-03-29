@@ -1,0 +1,164 @@
+// SCSS syntax stress-test for theme tuning
+// ---------------------------------------------------------------------------
+
+@use "sass:color";
+@use "sass:math";
+@use "sass:list";
+@use "sass:map";
+@use "sass:string";
+
+/// Module doc comment — theme tokens
+/// @param {Color} $base - base mint
+$mint-base: #96ccb9 !default;
+$gold-base: #e6c37e !default;
+$bp-md: 48rem;
+
+// ---------------------------------------------------------------------------
+// Variables, maps, lists
+// ---------------------------------------------------------------------------
+
+$z-index: (
+  "dropdown": 100,
+  "modal": 200,
+  "toast": 300,
+);
+
+$spacing: 0.25rem, 0.5rem, 1rem, 1.5rem, 2rem;
+
+// ---------------------------------------------------------------------------
+// Functions (built-in + custom)
+// ---------------------------------------------------------------------------
+
+@function tint($c, $amount) {
+  @return color.mix(white, $c, $amount * 100%);
+}
+
+@function strip-unit($n) {
+  @return math.div($n, $n * 0 + 1);
+}
+
+// ---------------------------------------------------------------------------
+// Mixins
+// ---------------------------------------------------------------------------
+
+@mixin focus-ring($c: $mint-base) {
+  outline: 2px solid $c;
+  outline-offset: 2px;
+}
+
+@mixin truncate($lines: 1) {
+  @if $lines == 1 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  } @else {
+    display: -webkit-box;
+    -webkit-line-clamp: $lines;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+@mixin respond($min) {
+  @media screen and (width >= $min) {
+    @content;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Parent selector &, nesting, @at-root
+// ---------------------------------------------------------------------------
+
+.theme-card {
+  border: 1px solid color.adjust($mint-base, $alpha: -0.7);
+  background: color.scale($gold-base, $lightness: -85%);
+
+  &:hover,
+  &:focus-within {
+    border-color: $mint-base;
+  }
+
+  &__title {
+    font-weight: 700;
+    color: tint($gold-base, 0.15);
+
+    &--muted {
+      opacity: 0.72;
+    }
+  }
+
+  @at-root .sidebar & {
+    margin-bottom: list.nth($spacing, 3);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// @extend, placeholders
+// ---------------------------------------------------------------------------
+
+%visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  @extend %visually-hidden;
+
+  &:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    clip: auto;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// @each, @for, @while, @if
+// ---------------------------------------------------------------------------
+
+@each $name, $z in $z-index {
+  .z-#{$name} {
+    z-index: $z;
+  }
+}
+
+@for $i from 1 through 3 {
+  .order-#{$i} {
+    order: $i;
+  }
+}
+
+$i: 0;
+
+@while $i < list.length($spacing) {
+  .m-#{$i} {
+    margin: list.nth($spacing, $i + 1);
+  }
+
+  $i: $i + 1;
+}
+
+// ---------------------------------------------------------------------------
+// Interpolation in selectors & values
+// ---------------------------------------------------------------------------
+
+$icon-prefix: "icon";
+
+.#{$icon-prefix}-chevron {
+  &::before {
+    content: string.quote("<");
+  }
+}
+
+// ---------------------------------------------------------------------------
+// @forward / @use patterns (commented — no real dep file in fixture)
+// ---------------------------------------------------------------------------
+
+// @forward "tokens" hide $internal-secret;
